@@ -24,31 +24,27 @@ class Results extends React.Component {
   }
 
   render() {
-    return (
-      this.props.winner ?
+    return this.props.winner ?
       <Winner ref="winner" winner={this.props.winner} /> :
       <div className="results">
         <div className="tally">
-        {this.getPair().map(entry => {
-          return <div key={entry} className="entry">
-            <h1>{entry}</h1>
-            <div className="voteCount">
-              {this.getVotes(entry)}
+          {this.getPair().map(entry =>
+            <div key={entry} className="entry">
+              <h1>{entry}</h1>
+              <div className="voteCount">
+                {this.getVotes(entry)}
+              </div>
             </div>
-          </div>
-        })}
+          )}
         </div>
-
         <div className="management">
-          <button
-            ref="next"
-            className="next"
-            onClick={this.props.next}>
-              Next
-            </button>
+          <button ref="next"
+                   className="next"
+                   onClick={this.props.next}>
+            Next
+          </button>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
@@ -63,7 +59,9 @@ function mapStateToProps(state) {
   };
 }
 
-const ResultsConainer = connect(mapStateToProps)(Results);
+const ResultsConainer = connect(
+  mapStateToProps
+)(Results);
 
 export {
   Results,
