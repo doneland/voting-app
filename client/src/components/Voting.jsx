@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import Winner from './Winner';
 import Vote from './Vote';
 
+import * as actionCreators from '../action_creators';
+
 class Voting extends React.Component {
   render() {
     return (
@@ -29,7 +31,10 @@ function mapStateToProps(state) {
   }
 }
 
-const VotingContainer = connect(mapStateToProps)(Voting)
+const VotingContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(Voting)
 
 export {
   Voting,
