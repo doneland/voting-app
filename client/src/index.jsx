@@ -28,8 +28,8 @@ const store = createStoreWithMiddleware(reducer);
 
 const routes = (
   <Route component={App}>
-    <Route path="/results" component={ResultsContainer} />
     <Route path="/" component={VotingContainer} />
+    <Route path="/results" component={ResultsContainer} />
   </Route>
 );
 

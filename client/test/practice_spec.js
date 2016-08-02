@@ -82,3 +82,44 @@ describe('Greetings', () => {
     });
   });
 });
+
+
+function currier(fn) {
+  let args = Array.prototype.slice.call(arguments, 1);
+
+  return function() {
+    return fn.apply(this, args.concat(Array.prototype.slice.call(arguments, 0)));
+  }
+}
+
+describe('Currying 2', () => {
+
+  it('slice array with array prototype', () => {
+    let stocks = ['AAPL', 'IBM', 'FB'];
+    let slicedStocks = Array.prototype.slice.call(stocks, 1);
+
+    expect(slicedStocks.length).to.equal(2);
+    expect(slicedStocks[0]).to.equal('IBM');
+    expect(slicedStocks[1]).to.equal('FB');
+
+    let stocks2 = ['MSFT', 'DIS', 'PF'];
+    let newStockList = stocks.concat(stocks2);
+    console.log(newStockList);
+
+    let newStockList2 = stocks.concat('PSX', 'KO');
+    console.log(newStockList2);
+  });
+
+
+  it('create custom curried function call', () => {
+    const sumFunc = (x, y) => x + y;
+
+    expect(sumFunc(1, 1)).to.equal(2);
+    expect(sumFunc(1, 2)).to.equal(3);
+
+    const sumFuncCurried = currier(sumFunc, 1);
+
+    expect(sumFuncCurried(1)).to.equal(2);
+    expect(sumFuncCurried(2)).to.equal(3);
+  });
+});
